@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:news/modules/WebView/Webview.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:news/modules/NewsApp/WebView/Webview.dart';
 
-// Widget defaultButton(
-//         {double width, Color background, Function function, String text}) =>
-//     Container(
-//       width: width,
-//       color: background,
-//       child: TextButton(
-//           onPressed: function,
-//           child: Text(
-//             text,
-//             style: TextStyle(color: Colors.white),
-//           )),
-//     );
+Widget defaultButton(
+        {double width, Color background, Function function, String text}) =>
+    Container(
+      width: width,
+      color: background,
+      child: TextButton(
+          onPressed: function,
+          child: Text(
+            text,
+            style: TextStyle(color: Colors.white),
+          )),
+    );
+Widget defaultTextButton({Function function, String text}) =>
+    TextButton(onPressed: function, child: Text(text));
 
 Widget defaultTextField(
     {TextEditingController controller,
@@ -183,3 +186,42 @@ Widget buildArticalItem(article, context) => InkWell(
     );
 void navigateTo(context, widget) =>
     Navigator.push(context, MaterialPageRoute(builder: (context) => widget));
+void navigateAndFinish(context, widget) => Navigator.pushAndRemoveUntil(
+    context,
+    MaterialPageRoute(builder: (context) => widget),
+    (Route<dynamic> route) => false);
+
+void showToast({@required String text, @required ToastStates states}) =>
+    Fluttertoast.showToast(
+        msg: text,
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 5,
+        backgroundColor: Colors.red,
+        textColor: Colors.white,
+        fontSize: 16.0);
+
+//enum
+enum ToastStates { Sucess, Error, Warrning }
+Color chooseToastColor(ToastStates states) {
+  Color color;
+  switch (states) {
+    case ToastStates.Sucess:
+      color = Colors.green;
+      break;
+    case ToastStates.Error:
+      color = Colors.red;
+      break;
+    case ToastStates.Warrning:
+      color = Colors.yellow;
+      break;
+  }
+
+  return color;
+}
+
+////////// print full text ///////
+void printFullText(String text) {
+  final pattern = RegExp('.{1,800}'); //// 800 is the size of chunk
+  pattern.allMatches(text).forEach((element) => print(element.group(0)));
+}

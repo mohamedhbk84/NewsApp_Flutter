@@ -4,9 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 // import 'package:news/Network/local/cache_helper.dart';
 import 'package:news/Network/remote/DioHelper.dart';
-import 'package:news/modules/Business/Business.dart';
-import 'package:news/modules/Science/Science.dart';
-import 'package:news/modules/Sports/Sports.dart';
+import 'package:news/modules/NewsApp/Business/Business.dart';
+import 'package:news/modules/NewsApp/Science/Science.dart';
+import 'package:news/modules/NewsApp/Sports/Sports.dart';
+
 import 'package:news/shared/Cubit/States.dart';
 
 class AppCubit extends Cubit<AppStates> {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:news/modules/Search/Search.dart';
+import 'package:news/modules/NewsApp/Search/Search.dart';
 import 'package:news/shared/Cubit/Cubit.dart';
 import 'package:news/shared/Cubit/States.dart';
 import 'package:news/shared/component/componentButton.dart';
